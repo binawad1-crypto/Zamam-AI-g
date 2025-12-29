@@ -1,0 +1,7 @@
+{
+  "name": " Zamam AI-g",
+  "description": "A comprehensive bilingual (Arabic/English) AI platform offering text analysis, image generation, and chat services powered by Gemini.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
