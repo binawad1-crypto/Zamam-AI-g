@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Language, View, User, ChatMessage } from './types';
 import { TRANSLATIONS, AI_TOOLS } from './constants';
@@ -39,11 +38,15 @@ const App: React.FC = () => {
     setInputMessage('');
     setIsTyping(true);
 
-    const response = await gemini.sendMessage(inputMessage);
-    
-    const newAiMsg: ChatMessage = { role: 'model', content: response, timestamp: new Date() };
-    setChatMessages(prev => [...prev, newAiMsg]);
-    setIsTyping(false);
+    try {
+      const response = await gemini.sendMessage(inputMessage);
+      const newAiMsg: ChatMessage = { role: 'model', content: response, timestamp: new Date() };
+      setChatMessages(prev => [...prev, newAiMsg]);
+    } catch (error) {
+      console.error("Failed to send message:", error);
+    } finally {
+      setIsTyping(false);
+    }
   };
 
   // Views
